@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://djpl2m61eh7cq"]
+
+[ext_resource type="Texture2D" uid="uid://cwwj3de0p7jnb" path="res://break assets/bricks/sp_brick_blue.png" id="1_2qopm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxy7g"]
+size = Vector2(7, 4)
+
+[node name="Enlarge" type="StaticBody2D"]
+scale = Vector2(1.16, 1.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Bricks", "Enlarge"]]
+scale = Vector2(5.39294, 4.07611)
+texture = ExtResource("1_2qopm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Bricks"]]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(15, 9.66)
+shape = SubResource("RectangleShape2D_gxy7g")

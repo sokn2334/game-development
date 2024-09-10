@@ -1,0 +1,307 @@
+[gd_scene load_steps=22 format=3 uid="uid://befopevdtmwnt"]
+
+[ext_resource type="Script" path="res://Actors/ball.gd" id="1_202pq"]
+[ext_resource type="Texture2D" uid="uid://c0bvlgu5j8qrw" path="res://break assets/bricks/Dungeon brick wall dark.png" id="1_qp6te"]
+[ext_resource type="Script" path="res://paddle.gd" id="2_8m0b0"]
+[ext_resource type="Script" path="res://cpu_particles_2d.gd" id="2_yepfd"]
+[ext_resource type="PackedScene" uid="uid://bwd4yrjakt20l" path="res://Actors/brick.tscn" id="3_uox4x"]
+[ext_resource type="Script" path="res://particles_right.gd" id="4_g068s"]
+[ext_resource type="Texture2D" uid="uid://cx6jjpm76qkqh" path="res://break assets/Misc/sp_ball.png" id="4_s6vat"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="5_4jds2"]
+[ext_resource type="PackedScene" uid="uid://d2gv4eis60qvx" path="res://Actors/slo_mo.tscn" id="5_hasfp"]
+[ext_resource type="Texture2D" uid="uid://bhl2nyy6imwhx" path="res://break assets/bricks/sp_brick_white.png" id="6_bj5e3"]
+[ext_resource type="PackedScene" uid="uid://djpl2m61eh7cq" path="res://Actors/enlarge.tscn" id="10_6453n"]
+[ext_resource type="Texture2D" uid="uid://crq8r8r1iodrh" path="res://break assets/UI/sp_heart_strip3.png" id="12_eis6r"]
+
+[sub_resource type="SystemFont" id="SystemFont_a061i"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="SystemFont" id="SystemFont_p5113"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ru1a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0awj"]
+size = Vector2(18.4678, 18.4615)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22d2m"]
+size = Vector2(276.499, 138.897)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fu0tu"]
+size = Vector2(37.2496, 24.8406)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmdyl"]
+size = Vector2(32.2938, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xbky"]
+size = Vector2(23.2736, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtad6"]
+
+[node name="Main" type="Node2D"]
+
+[node name="DungeonBrickWall" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.756863, 0.74902, 1)
+self_modulate = Color(0.8, 0.756863, 0.74902, 1)
+position = Vector2(612.778, 331.5)
+scale = Vector2(0.64537, 0.64537)
+texture = ExtResource("1_qp6te")
+
+[node name="StartText" type="RichTextLabel" parent="."]
+offset_left = 407.0
+offset_top = 371.0
+offset_right = 761.0
+offset_bottom = 590.0
+theme_override_colors/default_color = Color(0.8, 0.756863, 0.745098, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_a061i")
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "[center][CLICK TO START][/center]"
+
+[node name="EndText" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 420.0
+offset_top = 371.0
+offset_right = 774.0
+offset_bottom = 590.0
+theme_override_colors/default_color = Color(0.8, 0.756863, 0.74902, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_a061i")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]GAME OVER[/center]
+[center]CLICK TO RESTART[/center]"
+
+[node name="WinText" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 411.0
+offset_top = 227.0
+offset_right = 765.0
+offset_bottom = 446.0
+theme_override_colors/default_color = Color(0.8, 0.756863, 0.74902, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_a061i")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]CONGRATS![/center]
+[center]YOU HAVE WON THE GAME![/center]"
+
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 438.0
+offset_bottom = 82.0
+theme_override_colors/default_color = Color(0.8, 0.756863, 0.74902, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_p5113")
+theme_override_font_sizes/normal_font_size = 44
+text = "SCORE: 0"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 325)
+script = ExtResource("5_4jds2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_ru1a8")
+position = Vector2(-565, -325)
+scale = Vector2(2.924, 2.6)
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.7
+randomness = 0.32
+lifetime_randomness = 0.32
+fract_delta = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+scale_amount_max = 11.1
+color = Color(0.4717, 0.480445, 0.53, 1)
+script = ExtResource("2_yepfd")
+
+[node name="Particles_Right" type="CPUParticles2D" parent="Camera2D"]
+material = SubResource("CanvasItemMaterial_ru1a8")
+position = Vector2(562, -325)
+scale = Vector2(2.924, 2.6)
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.7
+randomness = 0.32
+lifetime_randomness = 0.32
+fract_delta = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+scale_amount_max = 11.1
+color = Color(0.470588, 0.482353, 0.529412, 1)
+script = ExtResource("4_g068s")
+
+[node name="SpHeartStrip3" type="Sprite2D" parent="."]
+position = Vector2(1050, 40.0001)
+scale = Vector2(3.95833, 3.95833)
+texture = ExtResource("12_eis6r")
+hframes = 3
+frame = 2
+
+[node name="SpHeartStrip4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1050, 40.0001)
+scale = Vector2(3.95833, 3.95833)
+texture = ExtResource("12_eis6r")
+hframes = 3
+frame = 1
+
+[node name="SpHeartStrip5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1050, 40.0001)
+scale = Vector2(3.95833, 3.95833)
+texture = ExtResource("12_eis6r")
+hframes = 3
+
+[node name="Ball" type="CharacterBody2D" parent="." node_paths=PackedStringArray("score_label", "start_text", "end_text", "win_text", "camera_ref", "particles", "particles_right", "paddle", "full_hearts", "two_hearts", "one_heart")]
+visible = false
+position = Vector2(468, 434)
+scale = Vector2(2.924, 2.6)
+motion_mode = 1
+script = ExtResource("1_202pq")
+score_label = NodePath("../Score")
+start_text = NodePath("../StartText")
+end_text = NodePath("../EndText")
+win_text = NodePath("../WinText")
+camera_ref = NodePath("../Camera2D")
+particles = NodePath("../Camera2D/CPUParticles2D")
+particles_right = NodePath("../Camera2D/Particles_Right")
+paddle = NodePath("../Paddle")
+full_hearts = NodePath("../SpHeartStrip3")
+two_hearts = NodePath("../SpHeartStrip4")
+one_heart = NodePath("../SpHeartStrip5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(3.69283, 3.94759)
+texture = ExtResource("4_s6vat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_c0awj")
+
+[node name="Enlarge" type="Timer" parent="Ball"]
+wait_time = 10.0
+
+[node name="SlowMo" type="Timer" parent="Ball"]
+wait_time = 6.0
+
+[node name="Paddle" type="CharacterBody2D" parent="." groups=["Paddle"]]
+position = Vector2(620, 617)
+scale = Vector2(1, 0.27999)
+motion_mode = 1
+script = ExtResource("2_8m0b0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paddle"]
+scale = Vector2(12.8099, 16.4622)
+texture = ExtResource("6_bj5e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+position = Vector2(-6.10352e-05, 0)
+scale = Vector2(0.908005, 1.28569)
+shape = SubResource("RectangleShape2D_22d2m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-20.2329, 318.063)
+scale = Vector2(1.08634, 30.1874)
+shape = SubResource("RectangleShape2D_fu0tu")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(549, -34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(45.5, 12)
+scale = Vector2(38.8, 1)
+shape = SubResource("RectangleShape2D_xmdyl")
+
+[node name="GameOver" type="StaticBody2D" parent="." groups=["GameOver"]]
+position = Vector2(533, 662)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOver"]
+position = Vector2(42, 15.5)
+scale = Vector2(60.24, 1)
+shape = SubResource("RectangleShape2D_3xbky")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(1195, 344)
+scale = Vector2(1.04, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+scale = Vector2(3.94329, 35.4606)
+shape = SubResource("RectangleShape2D_gtad6")
+
+[node name="SloMo" parent="." groups=["Bricks", "SlowMoPowerUp"] instance=ExtResource("5_hasfp")]
+position = Vector2(227, 186)
+
+[node name="SloMo2" parent="." groups=["Bricks", "SlowMoPowerUp"] instance=ExtResource("5_hasfp")]
+position = Vector2(787, 107)
+
+[node name="Enlarge" parent="." groups=["Bricks", "Enlarge"] instance=ExtResource("10_6453n")]
+position = Vector2(1068, 186)
+
+[node name="Enlarge2" parent="." groups=["Bricks", "Enlarge"] instance=ExtResource("10_6453n")]
+position = Vector2(227, 107)
+
+[node name="Bricks" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(87, 107)
+
+[node name="Bricks3" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(367, 107)
+
+[node name="Bricks4" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(507, 107)
+
+[node name="Bricks5" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(647, 107)
+
+[node name="Bricks7" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(927, 107)
+
+[node name="Bricks8" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(1068, 107)
+
+[node name="Bricks9" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(87, 186)
+
+[node name="Bricks11" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(367, 186)
+
+[node name="Bricks12" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(507, 186)
+
+[node name="Bricks13" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(647, 186)
+
+[node name="Bricks14" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(787, 186)
+
+[node name="Bricks15" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(927, 186)
+
+[node name="Bricks17" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(87, 266)
+
+[node name="Bricks18" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(227, 266)
+
+[node name="Bricks19" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(367, 266)
+
+[node name="Bricks20" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(507, 266)
+
+[node name="Bricks21" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(647, 266)
+
+[node name="Bricks22" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(787, 266)
+
+[node name="Bricks23" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(927, 266)
+
+[node name="Bricks24" parent="." instance=ExtResource("3_uox4x")]
+position = Vector2(1068, 266)
+
+[connection signal="timeout" from="Ball/Enlarge" to="Ball" method="_on_enlarge_timeout"]
+[connection signal="timeout" from="Ball/SlowMo" to="Ball" method="_on_slow_mo_timeout"]

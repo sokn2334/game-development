@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2gv4eis60qvx"]
+
+[ext_resource type="Texture2D" uid="uid://ciu41g2jxopnm" path="res://break assets/bricks/sp_brick_orange.png" id="1_codrb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxy7g"]
+size = Vector2(7, 4)
+
+[node name="SloMo" type="StaticBody2D"]
+scale = Vector2(1.16, 1.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Bricks"]]
+scale = Vector2(5.39294, 4.07611)
+texture = ExtResource("1_codrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Bricks"]]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(15, 9.66)
+shape = SubResource("RectangleShape2D_gxy7g")
