@@ -1,34 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://do7xxhi4fk880"]
+[gd_scene load_steps=4 format=3 uid="uid://do7xxhi4fk880"]
 
 [ext_resource type="Script" path="res://actors/projectiles/projectile.gd" id="1_oq7qo"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ocm7f"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_pbeaj"]
+[ext_resource type="Texture2D" uid="uid://b6uvmlsbhecqh" path="res://actors/projectiles/bread.png" id="2_413nk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yo5b0"]
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_oq7qo")
 
 [node name="MainSprite" type="Sprite2D" parent="."]
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_ocm7f")
-
-[node name="Sprite2D" type="Sprite2D" parent="MainSprite"]
-position = Vector2(-0.6, 0)
-scale = Vector2(0.5, 0.5)
-texture = SubResource("CanvasTexture_pbeaj")
-
-[node name="Sprite2D2" type="Sprite2D" parent="MainSprite"]
-position = Vector2(-0.9, 0)
-scale = Vector2(0.25, 0.25)
-texture = SubResource("CanvasTexture_pbeaj")
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("2_413nk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.83482, 2.6)
 shape = SubResource("CircleShape2D_yo5b0")
 
 [node name="TimeToLive" type="Timer" parent="."]
+one_shot = true
 autostart = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="TimeToLive" to="." method="_on_time_to_live_timeout"]

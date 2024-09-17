@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://r15gpao71aj0"]
+
+[ext_resource type="Script" path="res://actors/projectiles/dualshot.gd" id="1_7dud4"]
+[ext_resource type="Texture2D" uid="uid://5r1vfxp4edfr" path="res://actors/projectiles/creampuff.png" id="1_w54vk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spmpb"]
+
+[node name="dualshot" type="Area2D"]
+script = ExtResource("1_7dud4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.64, 2.64)
+texture = ExtResource("1_w54vk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.68, 2.68)
+shape = SubResource("CircleShape2D_spmpb")
+
+[node name="TimeToLive" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimeToLive" to="." method="_on_time_to_live_timeout"]
